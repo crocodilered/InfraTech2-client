@@ -54,26 +54,25 @@
     >
       <form v-on:submit.prevent="doPost">
         <v-card>
-          <v-card-title primary-title class="headline grey lighten-2">{{ dialogCaption }}</v-card-title>
-
+          <v-card-title class="headline primary white--text">{{ dialogCaption }}</v-card-title>
           <v-card-text>
             <v-container grid-list-md>
               <v-layout wrap>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-text-field
                     required
                     label="Inventory number"
                     v-model="item[1]"
                   ></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-text-field
                     required
                     label="Title"
                     v-model="item[2]"
                   ></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-textarea
                     label="Description"
                     v-model="item[3]"

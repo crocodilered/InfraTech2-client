@@ -38,21 +38,21 @@
     >
       <form v-on:submit.prevent="doPost">
         <v-card>
-          <v-card-title primary-title class="headline primary lighten-2">Create maintenance record</v-card-title>
+          <v-card-title primary-title class="headline primary white--text">Create maintenance record</v-card-title>
           <v-card-text>
             <v-container grid-list-md>
               <v-layout wrap>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-text-field
                     required
                     label="Short description"
                     v-model="maintenanceModel[5]"
                   ></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <equipment-selector @updated="val => (this.maintenanceModelEquipment = val)"></equipment-selector>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-select
                     return-object
                     :items="contractsList"
@@ -62,7 +62,7 @@
                     item-value="0"
                   ></v-select>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-menu
                     lazy offset-y full-width close-on-content-click
                     transition="scale-transition"
@@ -81,7 +81,7 @@
                     ></v-date-picker>
                   </v-menu>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-text-field
                     required
                     append-icon="attach_money"

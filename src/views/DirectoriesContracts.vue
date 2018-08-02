@@ -54,26 +54,25 @@
     >
       <form v-on:submit.prevent="doPost">
         <v-card>
-          <v-card-title primary-title class="headline grey lighten-2">{{ dialogCaption }}</v-card-title>
-
+          <v-card-title primary-title class="headline primary white--text">{{ dialogCaption }}</v-card-title>
           <v-card-text>
             <v-container grid-list-md>
               <v-layout wrap>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-text-field
                     required
                     label="Contractor title"
                     v-model="item[2]"
                   ></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-text-field
                     required
                     label="Contract ID"
                     v-model="item[1]"
                   ></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-text-field
                     required
                     append-icon="attach_money"
@@ -82,7 +81,7 @@
                     type="number"
                   ></v-text-field>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-menu
                     lazy offset-y full-width close-on-content-click
                     transition="scale-transition"
@@ -98,7 +97,7 @@
                     <v-date-picker v-model="item[4]"></v-date-picker>
                   </v-menu>
                 </v-flex>
-                <v-flex xs12 sm6 md4>
+                <v-flex xs12>
                   <v-menu
                     lazy offset-y full-width close-on-content-click
                     transition="scale-transition"
