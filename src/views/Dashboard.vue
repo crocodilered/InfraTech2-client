@@ -12,29 +12,21 @@
         </ul>
       </v-flex>
       <v-flex
-        xs12 md4
+        xs12 sm4 md2
         v-if="budgetModel"
       >
-        <v-layout row>
-          <v-flex>
-            <v-progress-circular
-              :rotate="-90"
-              :size="100"
-              :width="15"
-              :value="budgetExecInPercents"
-              color="primary"
-            >
-              {{ budgetExecInPercents }}%
-            </v-progress-circular>
-          </v-flex>
-          <v-flex>
-            <h2>
-              Budget<br>
-              <small>{{ budgetModel.beginDate }} — {{ budgetModel.endDate }}</small>
-            </h2>
-            <p>Execution: {{ budgetModel.execution }} of {{ budgetModel.value }}$</p>
-          </v-flex>
-        </v-layout>
+        <h2>Budget</h2>
+        <v-progress-circular
+          :rotate="-90"
+          :size="100"
+          :width="15"
+          :value="budgetExecInPercents"
+          color="primary"
+        >
+          {{ budgetExecInPercents }}%
+        </v-progress-circular>
+        <p>{{ dateFormat(budgetModel.beginDate) }} — {{ dateFormat(budgetModel.endDate) }}</p>
+        <p>Execution: {{ budgetModel.execution }} of {{ budgetModel.value }}$</p>
       </v-flex>
     </v-layout>
   </v-container>
@@ -68,10 +60,23 @@ const mounted = function () {
     .catch(err => console.log('Got HTTP error.', err))
 }
 
+const methods = {
+  // Converts yyyy-dd-mm string to nice string
+  dateFormat: function (dateStr) {
+    const d = new Date(dateStr)
+    if (dateStr) {
+      return d.toLocaleDateString()
+    } else {
+      return ''
+    }
+  }
+}
+
 export default {
   data,
   computed,
-  mounted
+  mounted,
+  methods
 }
 </script>
 
@@ -86,5 +91,9 @@ export default {
   li {
     list-style: none;
     margin: .2rem 0;
+  }
+  .v-progress-circular {
+    float: right;
+    transform: translate(0,-30px);
   }
 </style>
