@@ -20,12 +20,12 @@
         >
           <v-list-tile
             v-for="item in list"
-            :key="item[1]"
+            :key="item.identifier"
             @click="populateItem(item)"
           >
             <v-list-tile-content>
-              <v-list-tile-title>{{ item[2] }}</v-list-tile-title>
-              <v-list-tile-sub-title>INVENTORY: {{ item[1] }}</v-list-tile-sub-title>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              <v-list-tile-sub-title>INVENTORY: {{ item.identifier }}</v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -62,20 +62,20 @@
                   <v-text-field
                     required
                     label="Inventory number"
-                    v-model="item[1]"
+                    v-model="item.identifier"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field
                     required
                     label="Title"
-                    v-model="item[2]"
+                    v-model="item.title"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-textarea
                     label="Description"
-                    v-model="item[3]"
+                    v-model="item.description"
                   ></v-textarea>
                 </v-flex>
               </v-layout>
@@ -110,6 +110,7 @@ const data = function () {
 }
 
 const methods = {
+
   loadList: function () {
     return new Promise((resolve, reject) => {
       conf.api.post('/equipment/filter/', { terms: this.terms, token: this.$store.state.token })
@@ -125,15 +126,17 @@ const methods = {
         .finally(() => (this.isLoading = false))
     })
   },
+
   populateItem (item) {
     if (item) {
       this.dialogAction = 'Update'
-      this.item = item.slice() // Copy Array
+      this.item = Object.assign({}, item) // Copy Object
     } else {
       this.dialogAction = 'Create'
-      this.item = [0, '', '', '']
+      this.item = {id: 0, identifier: '', title: '', description: ''}
     }
   },
+
   doPost () {
     this.isLoading = true
     conf.api.post('/equipment/post/', { item: this.item, token: this.$store.state.token })
@@ -147,6 +150,7 @@ const methods = {
       })
       .finally(() => (this.isLoading = false))
   }
+
 }
 
 const watch = {

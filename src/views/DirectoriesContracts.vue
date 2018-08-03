@@ -20,12 +20,12 @@
         >
           <v-list-tile
             v-for="item in list"
-            :key="item[1]"
+            :key="item.identifier"
             @click="populateItem(item)"
           >
             <v-list-tile-content>
-              <v-list-tile-title>{{ item[2] }}</v-list-tile-title>
-              <v-list-tile-sub-title>CONTRACT: {{ item[1] }}</v-list-tile-sub-title>
+              <v-list-tile-title>{{ item.contractorTitle }}</v-list-tile-title>
+              <v-list-tile-sub-title>CONTRACT: {{ item.identifier }}</v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -62,14 +62,14 @@
                   <v-text-field
                     required
                     label="Contractor title"
-                    v-model="item[2]"
+                    v-model="item.contractorTitle"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field
                     required
                     label="Contract ID"
-                    v-model="item[1]"
+                    v-model="item.identifier"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs12>
@@ -77,7 +77,7 @@
                     required
                     append-icon="attach_money"
                     label="Contract value"
-                    v-model="item[3]"
+                    v-model="item.value"
                     type="number"
                   ></v-text-field>
                 </v-flex>
@@ -90,11 +90,11 @@
                     <v-text-field
                       required readonly
                       slot="activator"
-                      v-model="item[4]"
+                      v-model="item.beginDate"
                       label="Contract begin date"
                       append-icon="event"
                     ></v-text-field>
-                    <v-date-picker v-model="item[4]"></v-date-picker>
+                    <v-date-picker v-model="item.beginDate"></v-date-picker>
                   </v-menu>
                 </v-flex>
                 <v-flex xs12>
@@ -106,11 +106,11 @@
                     <v-text-field
                       required readonly
                       slot="activator"
-                      v-model="item[5]"
+                      v-model="item.endDate"
                       label="Contract end date"
                       append-icon="event"
                     ></v-text-field>
-                    <v-date-picker v-model="item[5]"></v-date-picker>
+                    <v-date-picker v-model="item.endDate"></v-date-picker>
                   </v-menu>
                 </v-flex>
               </v-layout>
@@ -163,10 +163,10 @@ const methods = {
   populateItem (item) {
     if (item) {
       this.dialogAction = 'Update'
-      this.item = item.slice() // Copy Array
+      this.item = Object.assign({}, item) // Copy Object
     } else {
       this.dialogAction = 'Create'
-      this.item = [0, '', '', '', '', '']
+      this.item = {id: 0, identifier: '', contractorTitle: '', value: '', beginDate: '', endDate: ''}
     }
   },
   doPost () {
