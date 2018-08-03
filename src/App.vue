@@ -49,7 +49,10 @@
 
     <v-toolbar dark fixed app clipped-left>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <img src="/static/logo.png" id="toolbar-logo">
+      <v-toolbar-title>
+        {{ title }}
+      </v-toolbar-title>
     </v-toolbar>
     <v-content>
       <router-view/>
@@ -99,6 +102,11 @@ export default {
 </script>
 
 <style>
+  #toolbar-logo {
+    width: auto;
+    height: 40px;
+    margin-left: 20px;
+  }
   button.v-btn {
     margin: 0;
   }
