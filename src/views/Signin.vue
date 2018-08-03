@@ -1,12 +1,11 @@
 <template>
   <v-container fluid>
     <v-layout wrap>
-      <v-flex xs12 sm4 offset-sm4>
+      <v-flex xs12 sm4>
         <h1>Sign in please</h1>
         <p>To access application you have to sign in first.</p>
-      </v-flex>
-      <v-flex xs12 sm4 offset-sm4 mb-3 v-if="error">
         <v-alert
+          v-if="error"
           :value="true"
           color="error"
           icon="warning"
@@ -15,8 +14,6 @@
           <template v-if="error == -1">Backend connection error.</template>
           <template v-if="error == 3">User with given email and password is not found.</template>
         </v-alert>
-      </v-flex>
-      <v-flex xs12 sm4 offset-sm4>
         <form @submit.prevent="signIn">
           <v-text-field
             required autofocus
