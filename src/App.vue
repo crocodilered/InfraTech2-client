@@ -102,6 +102,9 @@ export default {
 </script>
 
 <style>
+  p {
+    margin-bottom: 8px;
+  }
   #toolbar-logo {
     width: auto;
     height: 40px;
